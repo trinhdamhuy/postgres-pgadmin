@@ -1,4 +1,17 @@
 services:
+    pgadmin4:
+        container_name: pgadmin4
+        image: elestio/pgadmin:latest
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: test@gmail.com #email
+            PGADMIN_DEFAULT_PASSWORD: 1 #password
+            PGADMIN_LISTEN_PORT: 8080 #favorite port
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./pgadmin4:/var/lib/pgadmin
+
     postgres:
         container_name: postgres
         image: postgres:latest
@@ -11,20 +24,6 @@ services:
             - "5432:5432" #favorite port
         volumes:
             - ./postgresql:/var/lib/postgresql
-
-
-    pgadmin4:
-        container_name: pgadmin4
-        image: elestio/pgadmin:latest
-        restart: always
-        environment:
-            PGADMIN_DEFAULT_EMAIL: trinhdamhuy@gmail.com #email
-            PGADMIN_DEFAULT_PASSWORD: 1 #password
-            PGADMIN_LISTEN_PORT: 8080 #favorite port
-        ports:
-            - "8080:8080"
-        volumes:
-            - ./pgadmin4:/var/lib/pgadmin
 
 #comment out if you don't want to use external volumes
 volumes:
